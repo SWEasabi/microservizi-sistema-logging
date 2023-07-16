@@ -1,34 +1,68 @@
 package it.SWEasabi.SWEasabiLoggingRest;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import it.SWEasabi.logging.CoreLoggingService;
 
+@RestController
 public class Controller
 {
-    @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
-	@PostMapping("/login")
-	String EsempioListener(@RequestBody String json)
+	private CoreLoggingService core;
+	ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+	
+	public Controller()
 	{
-		//JsonObject rq = new Gson().fromJson(json, JsonObject.class);
-		//String username = rq.get("username").toString();
-		//String password = rq.get("password").toString();
-		
-        /*
-		LoginResult result = core.login(username, password);
-
-		JsonObject response = new JsonObject();
-		response.addProperty("status", result.getStatus());
-		response.addProperty("access", result.getAccessJwt());
-		response.addProperty("refresh", result.getRefreshJwt());
-
-		return response.toString();
-        */
-        return "";
+		core = context.getBean(CoreLoggingService.class);
 	}
+	
+    @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+	@GetMapping("/log/last/{idMisuratore}")
+	String GetLastLog(@PathVariable int idMisuratore)
+	{
+        return core.getLastMeasurerLog(idMisuratore).toString();
+	}
+    
+    @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+	@GetMapping("/log/last50/{idMisuratore}")
+	String GetLast50Logs(@PathVariable int idMisuratore)
+	{
+    	String res = "";
+    	for(JsonObject o : core.getLast50MeasurerLogs(idMisuratore))
+    	{
+    		res += o.toString();
+    	}
+    	return res;
+	}
+    
+    @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+   	@GetMapping("/log/all/{idMisuratore}")
+   	String GetAllLogs(@PathVariable int idMisuratore)
+   	{
+       	String res = "";
+       	for(JsonObject o : core.getAllMeasurerLogs(idMisuratore))
+       	{
+       		res += o.toString();
+       	}
+       	return res;
+   	}
+    
+    @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+   	@GetMapping("/log/dates/{start}/{end}")
+   	String GetLogsBetweenDates(@PathVariable long start, @PathVariable long end)
+   	{
+       	String res = "";
+       	for(JsonObject o : core.getLogsBetweenDates(start, end))
+       	{
+       		res += o.toString();
+       	}
+       	return res;
+   	}
+    
 }
