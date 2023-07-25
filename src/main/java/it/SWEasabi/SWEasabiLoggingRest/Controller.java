@@ -1,5 +1,6 @@
 package it.SWEasabi.SWEasabiLoggingRest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,13 +15,8 @@ import it.SWEasabi.logging.CoreLoggingService;
 @RestController
 public class Controller
 {
+	@Autowired
 	private CoreLoggingService core;
-	ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-	
-	public Controller()
-	{
-		core = context.getBean(CoreLoggingService.class);
-	}
 	
     @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 	@GetMapping("/log/last/{idMisuratore}")
