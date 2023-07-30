@@ -6,8 +6,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.google.gson.JsonObject;
-
 import it.SWEasabi.logging.entities.Log;
 import it.SWEasabi.logging.services.JsonBuilderService;
 import it.SWEasabi.logging.services.ReaderService;
