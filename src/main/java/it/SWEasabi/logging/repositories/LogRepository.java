@@ -12,5 +12,5 @@ public interface LogRepository extends CrudRepository<Log,Long> {
 	public Log findById(long id);
 	public List<Log> findByIdMisuratore(long idMisuratore);
 	public List<Log> findByTipo(String tipo);
-	public List<Log> findByTimestampGreaterThanAndTimestampLessThan(long min, long max);
+	public List<Log> findByIstanteModificaGreaterThanAndIstanteModificaLessThan(long min, long max);
 }

@@ -14,22 +14,23 @@ public class Log
 	private long id;
 	@Column(name="idmisuratore")
     private long idMisuratore;
-    private long timestamp;
+	@Column(name="istantemodifica")
+    private long istanteModifica;
     private int valore;
     private String tipo;
     
     public Log() {
     	this.id=0;
     	this.idMisuratore=0;
-    	this.timestamp=0;
+    	this.istanteModifica=0;
     	this.valore=0;
     	this.tipo="";
     }
 
-    public Log(int idMisuratore, long timestamp, int valore, String tipo)
+    public Log(int idMisuratore, long istanteModifica, int valore, String tipo)
     {
         this.idMisuratore = idMisuratore;
-        this.timestamp = timestamp;
+        this.istanteModifica = istanteModifica;
         this.valore = valore;
         this.tipo = tipo;
     }
@@ -44,9 +45,9 @@ public class Log
     {
         return idMisuratore;
     }
-    public long getTimeStamp()
+    public long getIstanteModifica()
     {
-        return timestamp;
+        return istanteModifica;
     }
     public int getValore()
     {
@@ -55,8 +56,8 @@ public class Log
 	public void setIdMisuratore(long idMisuratore) {
 		this.idMisuratore = idMisuratore;
 	}
-	public void setTimestamp(long timestamp) {
-		this.timestamp = timestamp;
+	public void setIstanteModifica(long istanteModifica) {
+		this.istanteModifica = istanteModifica;
 	}
 	public void setValore(int valore) {
 		this.valore = valore;
@@ -66,9 +67,6 @@ public class Log
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-	public long getTimestamp() {
-		return timestamp;
 	}
 	
 }
