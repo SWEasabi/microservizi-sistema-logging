@@ -1,6 +1,5 @@
 package it.SWEasabi.logging.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.SWEasabi.logging.entities.Log;
