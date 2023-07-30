@@ -23,7 +23,7 @@ public class DatabaseReaderService implements ReaderService {
 
 	
 	public List<Log> getLogsBetweenDates(long start, long end) {
-		return logRepository.findByTimestampGreaterThanAndTimestampLessThan(start, end);
+		return logRepository.findByIstanteModificaGreaterThanAndIstanteModificaLessThan(start, end);
 	}
 	
 }
