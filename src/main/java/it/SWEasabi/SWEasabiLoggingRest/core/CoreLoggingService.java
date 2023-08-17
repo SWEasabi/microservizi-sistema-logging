@@ -1,27 +1,26 @@
-package it.SWEasabi.logging;
+package it.SWEasabi.SWEasabiLoggingRest.core;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import it.SWEasabi.logging.entities.Log;
 import it.SWEasabi.logging.services.JsonBuilderService;
 import it.SWEasabi.logging.services.ReaderService;
 
+@Component
 public class CoreLoggingService
 {
-	@Autowired
     private ReaderService readerService;
-	@Autowired
     private JsonBuilderService jsonBuilderService;;
 
-    /*public CoreLoggingService(ReaderService _readerService, JsonBuilderService _jsonBuilderService)
+    public CoreLoggingService(ReaderService _readerService, JsonBuilderService _jsonBuilderService)
     {
         readerService = _readerService;
         jsonBuilderService = _jsonBuilderService;
-    }*/
+    }
     public Map<String,String> getLastMeasurerLog(int idMisuratore)
     {
         List<Log> logs = readerService.getLast50MeasurerLogs(idMisuratore);
