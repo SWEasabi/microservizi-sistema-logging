@@ -14,7 +14,7 @@ import it.SWEasabi.logging.services.ReaderService;
 public class CoreLoggingService
 {
     private ReaderService readerService;
-    private JsonBuilderService jsonBuilderService;;
+    private JsonBuilderService jsonBuilderService;
 
     public CoreLoggingService(ReaderService _readerService, JsonBuilderService _jsonBuilderService)
     {
